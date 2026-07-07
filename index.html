@@ -1,25 +1,60 @@
-<div id="scan-output" style="
-    padding:20px;
-    background:#111;
-    color:#fff;
-    font-size:18px;
-    border:1px solid #555;
-    white-space:pre-wrap;
-    border-radius:6px;
-    margin-bottom:20px;
-">
-    SCAN81 // waiting…
-</div>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>GAMBLE – Pulse</title>
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
 
-<script type="module">
-import { scanEVO } from "./SCAN81/scanEVO.js";
+    .core {
+      text-align: center;
+      animation: fadeIn 1.2s ease forwards;
+    }
 
-async function runScan() {
-    const result = await scanEVO();
-    document.getElementById("scan-output").textContent =
-        JSON.stringify(result, null, 2);
-}
+    .sun {
+      font-size: 64px;
+      color: #ffd700; /* Gold */
+      animation: sunPulse 1.6s infinite ease-in-out;
+    }
 
-runScan();
-setInterval(runScan, 1500);
-</script>
+    .moon {
+      font-size: 42px;
+      color: #c0c0c0; /* Silber */
+      margin-top: 10px;
+      animation: moonGlow 2.4s infinite ease-in-out;
+    }
+
+    @keyframes sunPulse {
+      0%   { opacity: 0.4; transform: scale(0.90); text-shadow: 0 0 4px #ffd700; }
+      50%  { opacity: 1;   transform: scale(1.15); text-shadow: 0 0 22px #ffea00; }
+      100% { opacity: 0.4; transform: scale(0.90); text-shadow: 0 0 4px #ffd700; }
+    }
+
+    @keyframes moonGlow {
+      0%   { text-shadow: 0 0 4px #c0c0c0; opacity: 0.5; }
+      50%  { text-shadow: 0 0 18px #ffffff; opacity: 1; }
+      100% { text-shadow: 0 0 4px #c0c0c0; opacity: 0.5; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="core">
+    <div class="sun">$</div>
+    <div class="moon">€</div>
+  </div>
+</body>
+</html>
